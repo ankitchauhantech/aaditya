@@ -1,0 +1,204 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+body { @apply bg-paper text-ink font-body antialiased; }
+.halftone { background-image: radial-gradient(currentColor 1.5px, transparent 1.6px); background-size: 14px 14px; }
+:focus-visible { outline: 3px solid #ec008c; outline-offset: 3px; }
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(0.5deg); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(8px) rotate(-0.5deg); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(0); opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { transform: translateY(120px); opacity: 0.2; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.08); }
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.18); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.15); }
+  70% { transform: scale(1); }
+}
+
+@keyframes printheadSweep {
+  0% { transform: translateX(0px); }
+  50% { transform: translateX(150px); }
+  100% { transform: translateX(0px); }
+}
+
+@keyframes paperFeed {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 40; }
+}
+
+/* ============================================================
+   PRINT SHOP WORKFLOW STORY ANIMATIONS (FOOTER CTA BANNER)
+   1. Customer walks in from left
+   2. Sits/talks at counter with staff
+   3. Staff walks from counter to printer
+   4. Printer starts active printing with laser & banner roll
+   ============================================================ */
+
+@keyframes customerWalkCycle {
+  0% {
+    transform: translate(-140px, 0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  25%, 85% {
+    transform: translate(60px, 0);
+    opacity: 1;
+  }
+  95% {
+    transform: translate(60px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-140px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes customerLegsWalk {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(18deg); }
+  70% { transform: rotate(-18deg); }
+}
+
+@keyframes staffWalkToPrinter {
+  0%, 42% {
+    transform: translate(0, 0); /* Sitting at desk */
+  }
+  50%, 88% {
+    transform: translate(175px, -6px); /* Walked to printer */
+  }
+  96%, 100% {
+    transform: translate(0, 0); /* Returns to desk */
+  }
+}
+
+@keyframes printerActivePrinting {
+  0%, 50% {
+    opacity: 0.15;
+    transform: scaleY(0.4);
+  }
+  58% {
+    opacity: 1;
+    transform: scaleY(0.7);
+  }
+  75%, 92% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  98%, 100% {
+    opacity: 0.15;
+    transform: scaleY(0.4);
+  }
+}
+
+@keyframes printheadLaserSprint {
+  0%, 50% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  55% {
+    opacity: 1;
+  }
+  60% { transform: translateX(80px); }
+  68% { transform: translateX(-20px); }
+  76% { transform: translateX(70px); }
+  84% { transform: translateX(-10px); }
+  92% { transform: translateX(50px); opacity: 1; }
+  96%, 100% { transform: translateX(0); opacity: 0; }
+}
+
+@keyframes speechBubbleCustomer {
+  0%, 18% { opacity: 0; transform: translateY(6px) scale(0.85); }
+  22%, 40% { opacity: 1; transform: translateY(0) scale(1); }
+  45%, 100% { opacity: 0; transform: translateY(-4px) scale(0.9); }
+}
+
+@keyframes speechBubbleStaff {
+  0%, 42% { opacity: 0; transform: translateY(6px) scale(0.85); }
+  46%, 62% { opacity: 1; transform: translateY(0) scale(1); }
+  66%, 100% { opacity: 0; transform: translateY(-4px) scale(0.9); }
+}
+
+@keyframes speechBubblePrinter {
+  0%, 64% { opacity: 0; transform: translateY(6px) scale(0.85); }
+  68%, 90% { opacity: 1; transform: translateY(0) scale(1); }
+  94%, 100% { opacity: 0; transform: translateY(-4px) scale(0.9); }
+}
+
+.anim-customer-story {
+  animation: customerWalkCycle 14s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.anim-staff-story {
+  animation: staffWalkToPrinter 14s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.anim-printer-banner {
+  transform-origin: top center;
+  animation: printerActivePrinting 14s ease-in-out infinite;
+}
+
+.anim-laser-sprint {
+  animation: printheadLaserSprint 14s ease-in-out infinite;
+}
+
+.anim-bubble-customer {
+  animation: speechBubbleCustomer 14s ease-in-out infinite;
+}
+
+.anim-bubble-staff {
+  animation: speechBubbleStaff 14s ease-in-out infinite;
+}
+
+.anim-bubble-printer {
+  animation: speechBubblePrinter 14s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 7s ease-in-out infinite;
+}
+
+.animate-scanline {
+  animation: scanline 3s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-heartbeat {
+  animation: heartBeat 2s ease-in-out infinite;
+}
+
+.animate-printhead {
+  animation: printheadSweep 3.5s ease-in-out infinite;
+}
+
+.animate-paper-feed {
+  animation: paperFeed 1.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) { *, ::before, ::after { animation: none !important; transition: none !important; } }
